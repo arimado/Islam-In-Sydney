@@ -6,7 +6,7 @@ var map;
 var mapid = document.getElementById('map'); 
 var currentPlayer;
 var googleOverlayOn = false; 
-
+var markers = []; 
 
 console.log(iframeReady);
 
@@ -29,13 +29,101 @@ function loadMap() {
 		addMarker(currentLat, currentLng, currentTitle, currentVideoId);
 	}
 
+	loadListners(); 
+
 	addInfoWindow(addMarker());
 	
 } 
 
-document.getElementById("header").addEventListener("click", function(){
-	console.log('cliiicked!');
+
+function loadListners() {
+	console.log(markers);
+	for(var i = 0; i < markers.length + 1; i++) {
+		console.log('listner loop'); 
+		// google.maps.event.addListener(markers[i], 'click', function(){
+		// 	console.log('hello' + i); 
+		// 		createVideo2(markers[i]); 
+		// })
+	}
+}
+
+$('.sliderBox').click(function(){
+	var boxid = $(this).attr('boxid');
+	console.log(markers[boxid]); 
+	createVideo2(markers[boxid]); 
 });
+
+
+
+function createVideo2(currentMarker) {
+
+	console.log(currentMarker);
+
+	var oldMarkerId; 
+
+	stopVideo(); 
+
+
+	$('#overlay').fadeIn(function(){
+		$('.overlayTitle').html(currentMarker.title);
+		$('.overlayTitle').fadeIn(function(){
+
+		if(iframeReady) {
+
+		currentPlayer = null; 
+		currentPlayer = new YT.Player('overlayVideo', {
+			height: '390',
+			width: '640',
+			videoId: currentMarker.metadata.videoId
+		});
+		console.log('currentPlayer updated');
+		$('#overlayVideo').fadeIn(); 
+
+		}
+		 
+	}); 
+	}); 
+	
+	
+
+	
+	$('.video').fitVids();
+	googleOverlayOn = true; 
+
+	oldMarkerId = currentMarker.metadata.videoId; 
+
+
+}
+
+
+
+function stopVideo() {
+
+
+
+	if(googleOverlayOn) {
+		currentPlayer.stopVideo();
+		$('#overlay').fadeOut(function(){
+		});
+		$('.overlayTitle').fadeOut(function(){
+		});
+		$('#videoWrapper').html('<div id="overlayVideo" class="video"></div>');
+		$('#overlayVideo').fadeOut(function(){
+		});
+		googleOverlayOn = false; 
+
+
+
+	} 
+
+	
+
+	
+
+}
+
+
+
 
 function addMarker(lat, lng, title, videoId) {
 
@@ -57,6 +145,8 @@ function addMarker(lat, lng, title, videoId) {
 	marker.metadata = {videoId: videoId};
 	marker.setMap(map); 
 
+	markers.push(marker); 
+
 
 	//MARKER CLICK EVENT
 	google.maps.event.addListener(marker, 'click', function() {   
@@ -73,10 +163,6 @@ function addMarker(lat, lng, title, videoId) {
 	// 	console.log(this);
 
 	// });
-
-	
-
-	
 
 	function createVideo() {
 
