@@ -5,6 +5,8 @@ var iframeLaunched = 0;
 var map; 
 var mapid = document.getElementById('map'); 
 var currentPlayer;
+var googleOverlayOn = false; 
+
 
 console.log(iframeReady);
 
@@ -31,6 +33,9 @@ function loadMap() {
 	
 } 
 
+document.getElementById("header").addEventListener("click", function(){
+	console.log('cliiicked!');
+});
 
 function addMarker(lat, lng, title, videoId) {
 
@@ -54,22 +59,26 @@ function addMarker(lat, lng, title, videoId) {
 
 
 	//MARKER CLICK EVENT
-	google.maps.event.addListener(marker, 'click', function() {               
-		createVideo(); 
+	google.maps.event.addListener(marker, 'click', function() {   
+			createVideo(); 
 	});
 
 	//MAP CLICK EVENT
-	google.maps.event.addListener(map, 'click', function() {               
+	google.maps.event.addListener(map, 'click', function() {     
+	console.log('map clicked!');          
 	  	stopVideo(); 
 	});
 
-	$('.sliderBox').click(function(){
-		createVideo(); 
-	})
+	// $(this).click(function(){
+	// 	console.log(this);
+
+	// });
+
+	
+
+	
 
 	function createVideo() {
-
-		console.log(marker);
 
 		$('#overlay').fadeIn(); 
 
@@ -84,13 +93,24 @@ function addMarker(lat, lng, title, videoId) {
 		}
 		$('.overlayTitle').html(marker.title); 
 		$('.video').fitVids();
+		googleOverlayOn = true; 
 	}
 
 	function stopVideo() {
-		currentPlayer.stopVideo();
+
+		if(googleOverlayOn) {
+			currentPlayer.stopVideo();
 			$('#overlay').fadeOut(function(){
-			$('#videoWrapper').html('<div id="overlayVideo" class="video"></div>');
-		});  
+				$('#videoWrapper').html('<div id="overlayVideo" class="video"></div>');
+			});
+		} else {
+			currentPlayer.stopVideo();
+		}
+
+		
+		googleOverlayOn = false; 
+
+
 	}
 
 
@@ -150,8 +170,7 @@ $(document).ready(function(){
 			    // instead of a settings object
 			  ]
 		
-	});
-	
+	}); 
 
 });
 

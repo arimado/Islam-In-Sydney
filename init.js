@@ -40,7 +40,7 @@ var markerPositions = [
 
 for(var i = 0; i < markerPositions.length; i++) {
 
-	$('#slider').append('<div class="sliderBox" boxid="' + i + '"><span id="childElement"></span><div class="sliderBoxImg"><img src="https://i.guim.co.uk/img/static/sys-images/Guardian/Pix/pictures/2012/1/19/1326962405927/A-Muslim-woman-wearing-a--007.jpg?w=620&q=85&auto=format&sharp=10&s=d337a9244f20ff527a6842f11ac55a57"/></div><div class="sliderBoxTitle">' + markerPositions[i].title + '</div></div>');
+	$('#slider').append('<div class="sliderBox" boxid="' + i + '" id="' + 'box' + i + '"><span id="childElement"></span><div class="sliderBoxImg"><img src="https://i.guim.co.uk/img/static/sys-images/Guardian/Pix/pictures/2012/1/19/1326962405927/A-Muslim-woman-wearing-a--007.jpg?w=620&q=85&auto=format&sharp=10&s=d337a9244f20ff527a6842f11ac55a57"/></div><div class="sliderBoxTitle">' + markerPositions[i].title + '</div></div>');
 
 }
 
