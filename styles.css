@@ -82,13 +82,16 @@ body {
 
 	.headerTitle {
 		text-align: center;
-		font-size: 5em;
+		font-size: 3em;
 		font-weight: 600;
 		padding: 200px 0 300px 0;
 	}
 
 	.contentWrapper {
 		padding: 0 50px 0;
+		margin: auto;
+		max-width: 1200px;
+		min-width: 980px;
 	}
 
 	.mapWrapper {
@@ -98,15 +101,76 @@ body {
 		#overlay {
 			position: absolute;
 		    z-index: 10;
-		    background: green;
+		    background: grey;
 		    min-height: 90%;
 		    width: 90%;
 		    top: 5%;
 		    left: 5%;
 		    display: none;
-		    text-align: center;
-		    font-size: 6em;
+
 		}
+
+			.topElements {
+				overflow: auto;
+			}
+
+			.markerBox {
+				float: left;
+				padding: 30px 10px 0 40px;
+			}
+
+			.overlayTitle {
+				    font-size: 60px;
+    				padding: 30px;
+    				float: left; 
+			}
+
+			.closeX {
+				position: absolute;
+			    top: 0;
+			    right: 0;
+			    width: 40px;
+			    padding: 10px;
+			}
+				.closeX img {
+					width: 100%;
+					top: 0;
+					cursor: pointer;
+				}
+					.closeX img:hover {
+						cursor: pointer;
+					}
+
+			#videoWrapper {
+				padding: 40px;
+			}
+				#overlayVideo {
+
+				}
+
+			#overlaySocial {
+				padding: 5px 40px 0 0 ;
+			}
+				#overlaySocial ul {
+
+				}
+					#overlaySocial ul li {
+						float: right;
+						width: 30px;
+						margin-left: 10px;
+					}
+
+					#overlaySocial ul li img {
+						width: 100%;
+					}
+
+						#overlaySocial ul li img:hover {
+							cursor: pointer;
+						}
+
+
+
+
 
 		#map {
 			min-height: 600px;
@@ -125,17 +189,17 @@ body {
 
 					.sliderBoxImg img{
 											}	
-				.sliderBoxTitle {
-					    text-align: center;
-					    color: white;
-					    background-color: rgba(0, 0, 0, 0.4);
-					    position: relative;
-					    z-index: 10;
-					    width: 95%;
-					    bottom: 5px;
-					    left: 2.5%;
-					    padding: 10px 0 10px 0;
-				}
+						.sliderBoxTitle {
+							    text-align: center;
+							    color: white;
+							    background-color: rgba(0, 0, 0, 0.4);
+							    position: relative;
+							    z-index: 10;
+							    width: 95%;
+							    bottom: 5px;
+							    left: 2.5%;
+							    padding: 10px 0 10px 0;
+						}
 
 	.footerWrapper {
 

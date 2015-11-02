@@ -80,11 +80,15 @@ function createVideo2(currentMarker) {
 		$('#overlayVideo').fadeIn(); 
 
 		}
+
+
+		$('#videoWrapper').fitVids();
+		resizeOverlay(); 
 		 
+
+		 
+		}); 
 	}); 
-	}); 
-	
-	
 
 	
 	$('.video').fitVids();
@@ -101,20 +105,18 @@ function stopVideo() {
 
 
 
-	if(googleOverlayOn) {
-		currentPlayer.stopVideo();
-		$('#overlay').fadeOut(function(){
-		});
-		$('.overlayTitle').fadeOut(function(){
-		});
-		$('#videoWrapper').html('<div id="overlayVideo" class="video"></div>');
-		$('#overlayVideo').fadeOut(function(){
-		});
+	
+		if(googleOverlayOn) {
+			currentPlayer.stopVideo();
+			$('#overlay').fadeOut(function(){
+				$('#videoWrapper').html('<div id="overlayVideo" class="video"></div>');
+			});
+		} else {
+			currentPlayer.stopVideo();
+		}
+
+		
 		googleOverlayOn = false; 
-
-
-
-	} 
 
 	
 
@@ -166,7 +168,10 @@ function addMarker(lat, lng, title, videoId) {
 
 	function createVideo() {
 
-		$('#overlay').fadeIn(); 
+		$('#overlay').fadeIn(function(){
+			$('#videoWrapper').fitVids();
+			resizeOverlay(); 
+		}); 
 
 		if(iframeReady) {
 			currentPlayer = null; 
@@ -178,7 +183,7 @@ function addMarker(lat, lng, title, videoId) {
 			console.log('currentPlayer updated');
 		}
 		$('.overlayTitle').html(marker.title); 
-		$('.video').fitVids();
+		
 		googleOverlayOn = true; 
 	}
 
@@ -258,7 +263,61 @@ $(document).ready(function(){
 		
 	}); 
 
+	// $('#overlay').fadeIn(); 
+	// $('.overlayTitle').html("Muhammad 'Nof' Naufal"); 
+	// $('#videoWrapper').fitVids();
+	// googleOverlayOn = true; 
+
+
+
+	
+
+
+	$( window ).resize(function() {
+		resizeOverlay();
+	});
+
+	 $('.closeX').click(function(){
+	 	stopVideo();
+	 });
+
+	 $('#overlaySocial ul li img').hover(function(){
+
+	 	var state = $(this).attr('state');
+	 	var name = $(this).attr('name'); 
+	 	var newStateString = '';
+
+	 	if(state === "off") {
+	 		newStateString = name + '-hover.png';
+	 		state = "on";
+	 	} else {
+	 		newStateString = name + '.png'; 
+	 		state = "off";
+	 	}
+
+
+	 	$(this).attr('state', state);
+	 	$(this).attr('src', newStateString);
+	 		
+	 	console.log(newStateString);
+
+	 });
+
+
+
 });
+
+
+function resizeOverlay() {
+	var topElementHeight = $('#topElementHeight').height();
+	var iframeHeight = $('#overlayVideo').height(); 
+	var socialHeight = $('#overlaySocial').height();
+	$('#overlay').height(iframeHeight + topElementHeight + overlaySocial); 
+	var height = topElementHeight + iframeHeight + 400;
+	$('#map').height(height);
+}
+
+
 
 
 
