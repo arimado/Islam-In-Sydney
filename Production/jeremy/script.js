@@ -45,7 +45,7 @@ function loadListners() {
 		// 		createVideo2(markers[i]); 
 		// })
 	}
-}
+} 
 
 $('.sliderBox').click(function(){
 	var boxid = $(this).attr('boxid');
@@ -84,6 +84,7 @@ function createVideo2(currentMarker) {
 
 		$('#videoWrapper').fitVids();
 		resizeOverlay(); 
+		resizeOverlay(); 
 		 
 
 		 
@@ -102,25 +103,16 @@ function createVideo2(currentMarker) {
 
 
 function stopVideo() {
-
-
-
 	
 		if(googleOverlayOn) {
 			currentPlayer.stopVideo();
 			$('#overlay').fadeOut(function(){
 				$('#videoWrapper').html('<div id="overlayVideo" class="video"></div>');
+				resizeOverlay();
 			});
-		} else {
-			currentPlayer.stopVideo();
-		}
-
+		} 
 		
 		googleOverlayOn = false; 
-
-	
-
-	
 
 }
 
@@ -171,6 +163,7 @@ function addMarker(lat, lng, title, videoId) {
 		$('#overlay').fadeIn(function(){
 			$('#videoWrapper').fitVids();
 			resizeOverlay(); 
+			resizeOverlay(); 
 		}); 
 
 		if(iframeReady) {
@@ -193,10 +186,13 @@ function addMarker(lat, lng, title, videoId) {
 			currentPlayer.stopVideo();
 			$('#overlay').fadeOut(function(){
 				$('#videoWrapper').html('<div id="overlayVideo" class="video"></div>');
+				resizeOverlay();
 			});
 		} else {
 			currentPlayer.stopVideo();
 		}
+
+
 
 		
 		googleOverlayOn = false; 
