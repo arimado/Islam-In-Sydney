@@ -19,6 +19,7 @@ function loadMap() {
 		center: new google.maps.LatLng(-33.8486493, 151.1293891),
 		zoomControl: false,
 		scaleControl: true,
+		scrollwheel: false,
 		mapTypeId: google.maps.MapTypeId.SATELLITE
 	}; 
 

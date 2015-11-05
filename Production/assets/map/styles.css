@@ -42,7 +42,7 @@
 		#overlay {
 			position: absolute;
 		    z-index: 10;
-		    background: grey;
+		    background-color: rgba(0, 0, 0, 0.5);
 		    min-height: 90%;
 		    width: 90%;
 		    top: 5%;
@@ -126,7 +126,7 @@
 				overflow: hidden;
 			}
 				.sliderBoxImg {
-					height: 150px;
+					height: 230px;
 				}
 
 					.sliderBoxImg img{
@@ -152,18 +152,18 @@
 		}
 
 .inner {
-	background: white;
+	
 	width: 100%;
 }
 
 
 div#logoiss {
-	background: white;
-	border: 1px solid white;
+	
+	
 }
 
 div#logoiss img{
-	height: 300px;
+	width: 200px;
 	padding: 0 0 50px 0;
 }
 
